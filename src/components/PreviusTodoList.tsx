@@ -1,106 +1,26 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 
 const PreviousTodoList = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const items = Array.from({ length: 15 });
+
   return (
     <Wrapper>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
-      <List>
-        <span>
-          Previous To-Do List{" "}
-          <ListDate>{new Date().toLocaleDateString()}</ListDate>
-        </span>
-        <RightArrow>{">"}</RightArrow>
-      </List>
+      {items.map((_, idx) => (
+        <List
+          key={idx}
+          selected={selectedIndex === idx}
+          onClick={() => setSelectedIndex(idx)}
+        >
+          <span>
+            Previous To-Do List{" "}
+            <ListDate>{new Date().toLocaleDateString()}</ListDate>
+          </span>
+          <RightArrow>{">"}</RightArrow>
+        </List>
+      ))}
     </Wrapper>
   );
 };
@@ -145,7 +65,7 @@ const Wrapper = styled.div`
   scrollbar-color: black #ead5b4;
 `;
 
-const List = styled.div`
+const List = styled.div<{ selected?: boolean }>`
   margin: 19px;
   font-size: 20px;
   font-weight: bold;
@@ -155,6 +75,12 @@ const List = styled.div`
   justify-content: space-between;
   cursor: pointer;
   align-items: center;
+  background: ${({ selected }) =>
+    selected ? "#e5b246" : "transparent"};
+  box-shadow: ${({ selected }) =>
+    selected ? "0 0 8px 2px #e0c48a" : "none"};
+  border-radius: ${({ selected }) => (selected ? "8px" : "0")};
+  transition: background 0.2s, box-shadow 0.2s;
 `;
 
 const RightArrow = styled.span`
