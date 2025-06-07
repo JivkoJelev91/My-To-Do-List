@@ -3,8 +3,7 @@ import { styled } from "styled-components";
 import { useTodoStore } from "../store/todoStore";
 
 const TodoList = () => {
-  const { todos, addTodo, deleteTodo, toggleCheck, updateValue, saveTodos } =
-    useTodoStore();
+  const { todos, saveTodos } = useTodoStore();
   const [title, setTitle] = useState("To-Do List");
   const [checked, setChecked] = useState(Array(12).fill(false));
   const [inputValues, setInputValues] = useState<{ [key: string]: string }>({});
@@ -39,7 +38,7 @@ const TodoList = () => {
             />
             <XIconButton
               onClick={() => {
-                deleteTodo(task.id);
+                setInputValues({ ...inputValues, [`task-${idx}`]: "" });
               }}
             >
               X
@@ -132,7 +131,7 @@ const CustomCheckbox = styled.input.attrs({ type: "checkbox" })`
     pointer-events: none;
   }
   &:checked::after {
-    content: "✓";
+    content: "✗";
     color: #222;
     font-size: 24px;
     font-weight: bold;
