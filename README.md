@@ -1,4 +1,4 @@
-# Zhivko Organizer
+# My-To-Do-List
 
 This project is built with Vite, React, TypeScript, Styled-Components, and Zustand.
 
