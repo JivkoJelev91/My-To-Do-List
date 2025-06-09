@@ -32,3 +32,6 @@ npm run dev
 ---
 
 For more details, see the documentation for each library.
+
+> 🧠 This repo was created as a way to become more familiar with Zustand for global state management.
+
